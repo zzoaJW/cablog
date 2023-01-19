@@ -3,9 +3,9 @@ import { useState } from 'react';
 
 function App() {
 
-  let post = '강남 우동 맛집';
   let [글제목, 글제목변경] = useState(['남자 코트 추천', '강남 우동 맛집', '파이썬 독학']);
   let [따봉, 따봉변경] = useState(0);
+  let [modal, setModal] = useState(false);
 
   return (
     <div className="App">
@@ -34,11 +34,13 @@ function App() {
         <p>2월 17일 발행</p>
       </div>
       <div className="list">
-        <h4>{글제목[2]}</h4>
+        <h4 onClick={()=>{setModal(!modal)}}>{글제목[2]}</h4>
         <p>2월 17일 발행</p>
       </div>
 
-      <Modal/>
+      {
+        modal? <Modal/> : null
+      }
 
     </div>
   );
