@@ -4,30 +4,18 @@ import { useState } from 'react';
 function App() {
 
   let [글제목, 글제목변경] = useState(['남자 코트 추천', '강남 우동 맛집', '파이썬 독학']);
-  let [따봉, 따봉변경] = useState(글제목.map(function(){
-    return (0)
-  }));
+  let [입력값, 입력값변경] = useState('');
+  let [따봉, 따봉변경] = useState([0,0,0]);
+  let [날짜, 날짜변경] = useState(['2022.12.31','2023.01.01','2023.01.22']);
+  let [입력날짜, 입력날짜변경] = useState('');
   let [선택글인덱스, 인덱스변경] = useState(0);
   let [modal, setModal] = useState(false);
-  let [입력값, 입력값변경] = useState('');
 
   return (
     <div className="App">
       <div className='black-nav'>
         <h4>React Bolg</h4>
       </div>
-
-      <button onClick={()=>{
-        let copy = [...글제목];
-        copy.sort();
-        글제목변경(copy);
-      }}>가나다순 정렬</button>
-
-      <button onClick={()=>{
-        let copy = [...글제목];
-        copy[0] = '여자 코트 추천';
-        글제목변경(copy);
-        }}>여자로 바꾸기</button>
 
       {
         글제목.map(function(a, i){
@@ -45,9 +33,9 @@ function App() {
                   copy[i]++;
                   따봉변경(copy)
                   }}>👍</span>
-                {따봉[i]}
+                { 따봉[i] }
                 </h4>
-              <p>2월 17일 발행</p>
+              <p>{ 날짜[i] }</p>
               </div>
               <button onClick={()=>{
                 let copy = [...글제목];
@@ -61,8 +49,13 @@ function App() {
 
       <input onChange={(e)=>{
         입력값변경(e.target.value);
+        }}/><input type='date' onChange={(e)=>{
+          입력날짜변경(e.target.value);
         }}/> <button onClick={()=>{
-          글제목변경(글제목.concat(입력값));
+          // TODO : 입력값 없으면 발행 안하기
+          날짜변경([...날짜, 입력날짜])
+          글제목변경([...글제목, 입력값]);
+          따봉변경([...따봉, 0]);
           }}>글 발행</button>
 
       {
