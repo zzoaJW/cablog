@@ -6,7 +6,7 @@ function App() {
   let [글제목, 글제목변경] = useState(['남자 코트 추천', '강남 우동 맛집', '파이썬 독학']);
   let [입력값, 입력값변경] = useState('');
   let [따봉, 따봉변경] = useState([0,0,0]);
-  let [날짜, 날짜변경] = useState(['2022.12.31','2023.01.01','2023.01.22']);
+  let [날짜, 날짜변경] = useState(['2022-12-31','2023-01-01','2023-01-22']);
   let [입력날짜, 입력날짜변경] = useState('');
   let [선택글인덱스, 인덱스변경] = useState(0);
   let [modal, setModal] = useState(false);
@@ -38,9 +38,17 @@ function App() {
               <p>{ 날짜[i] }</p>
               </div>
               <button onClick={()=>{
-                let copy = [...글제목];
-                copy.splice(i, 1)
-                글제목변경(copy)
+                let copy1 = [...글제목];
+                copy1.splice(i, 1)
+                글제목변경(copy1)
+
+                let copy2 = [...따봉];
+                copy2.splice(i, 1)
+                따봉변경(copy2)
+
+                let copy3 = [...날짜];
+                copy3.splice(i, 1)
+                날짜변경(copy3)
               }}>글 삭제</button>
             </div>
           )
