@@ -34,7 +34,7 @@ function App() {
                   let copy = [...따봉];
                   copy[i]++;
                   따봉변경(copy)
-                  }}>👍</span>
+                  }}> 👍</span>
                 { 따봉[i] }
                 </h4>
               <p>{ 날짜[i] }</p>
@@ -44,13 +44,18 @@ function App() {
                 copy1.splice(i, 1)
                 글제목변경(copy1)
 
-                let copy2 = [...따봉];
+                let copy2 = [...날짜];
                 copy2.splice(i, 1)
-                따봉변경(copy2)
+                날짜변경(copy2)
 
-                let copy3 = [...날짜];
+                let copy3 = [...상세내용];
                 copy3.splice(i, 1)
-                날짜변경(copy3)
+                상세내용변경(copy3)
+
+                let copy4 = [...따봉];
+                copy4.splice(i, 1)
+                따봉변경(copy4)
+
               }}>글 삭제</button>
             </div>
           )
@@ -58,25 +63,31 @@ function App() {
       }
 
       {
-        modal? <Modal 선택글인덱스={선택글인덱스} 글제목={글제목} 날짜={날짜} 상세내용={상세내용}/> : null
+        modal && 글제목.length!==0? <Modal 선택글인덱스={선택글인덱스} 글제목={글제목} 날짜={날짜} 상세내용={상세내용}/> : null
       }
 
-      <input placeholder='글 제목' onChange={(e)=>{
-        입력글제목변경(e.target.value);
-        }}/>
-        <input type='date' onChange={(e)=>{
-          입력날짜변경(e.target.value);
-        }}/>
-        <input placeholder='상세내용' onChange={(e)=>{
-          입력상세내용변경(e.target.value);
-        }}/>
-        <button onClick={()=>{
-          // TODO : 입력값 없으면 발행 안하기
-          글제목변경([...글제목, 입력글제목]);
-          날짜변경([...날짜, 입력날짜]);
-          상세내용변경([...상세내용, 입력상세내용]);
-          따봉변경([...따봉, 0]);
-          }}>글 발행</button>
+      <br/>
+      <div>
+        <input placeholder='글 제목' onChange={(e)=>{
+            입력글제목변경(e.target.value);
+          }}/>
+          <br/>
+          <input type='date' onChange={(e)=>{
+            입력날짜변경(e.target.value);
+          }}/>
+          <br/>
+          <textarea placeholder='상세내용' onChange={(e)=>{
+            입력상세내용변경(e.target.value);
+          }}/>
+          <p/>
+          <button onClick={()=>{
+            // TODO : 입력값 없으면 발행 안하기
+            글제목변경([...글제목, 입력글제목]);
+            날짜변경([...날짜, 입력날짜]);
+            상세내용변경([...상세내용, 입력상세내용]);
+            따봉변경([...따봉, 0]);
+            }}>글 발행</button>
+        </div>
 
     </div>
   );
@@ -88,7 +99,6 @@ function Modal(props){
       <h4>{props.글제목[props.선택글인덱스]}</h4>
       <p>{props.날짜[props.선택글인덱스]}</p>
       <p>{props.상세내용[props.선택글인덱스]}</p>
-      <button>글 수정</button>
     </div>
   )
 }
