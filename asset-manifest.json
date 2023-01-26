@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/cablog/static/css/main.4e805926.css",
-    "main.js": "/cablog/static/js/main.6fca253e.js",
+    "main.js": "/cablog/static/js/main.33c6bf64.js",
     "static/js/787.bbeb9940.chunk.js": "/cablog/static/js/787.bbeb9940.chunk.js",
     "index.html": "/cablog/index.html",
     "main.4e805926.css.map": "/cablog/static/css/main.4e805926.css.map",
-    "main.6fca253e.js.map": "/cablog/static/js/main.6fca253e.js.map",
+    "main.33c6bf64.js.map": "/cablog/static/js/main.33c6bf64.js.map",
     "787.bbeb9940.chunk.js.map": "/cablog/static/js/787.bbeb9940.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.4e805926.css",
-    "static/js/main.6fca253e.js"
+    "static/js/main.33c6bf64.js"
   ]
 }
