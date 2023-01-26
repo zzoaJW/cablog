@@ -55,20 +55,21 @@ function App() {
         })
       }
 
-      <input onChange={(e)=>{
+      {
+        modal? <Modal 선택글인덱스={선택글인덱스} 글제목={글제목}/> : null
+      }
+      <> </>
+
+      <input placeholder='글 제목' onChange={(e)=>{
         입력값변경(e.target.value);
         }}/><input type='date' onChange={(e)=>{
           입력날짜변경(e.target.value);
-        }}/> <button onClick={()=>{
+        }}/><input placeholder='상세내용'></input> <button onClick={()=>{
           // TODO : 입력값 없으면 발행 안하기
           날짜변경([...날짜, 입력날짜])
           글제목변경([...글제목, 입력값]);
           따봉변경([...따봉, 0]);
           }}>글 발행</button>
-
-      {
-        modal? <Modal 선택글인덱스={선택글인덱스} 글제목={글제목}/> : null
-      }
 
     </div>
   );
