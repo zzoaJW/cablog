@@ -4,10 +4,12 @@ import { useState } from 'react';
 function App() {
 
   let [글제목, 글제목변경] = useState(['남자 코트 추천', '강남 우동 맛집', '파이썬 독학']);
-  let [입력값, 입력값변경] = useState('');
+  let [입력글제목, 입력글제목변경] = useState('');
   let [따봉, 따봉변경] = useState([0,0,0]);
   let [날짜, 날짜변경] = useState(['2022-12-31','2023-01-01','2023-01-22']);
   let [입력날짜, 입력날짜변경] = useState('');
+  let [상세내용, 상세내용변경] = useState(['추천합니다!', '아무래도 강남엔 맛집이 없네요.', '독학 가능합니다 화이팅.']);
+  let [입력상세내용, 입력상세내용변경] = useState('');
   let [선택글인덱스, 인덱스변경] = useState(0);
   let [modal, setModal] = useState(false);
 
@@ -56,18 +58,23 @@ function App() {
       }
 
       {
-        modal? <Modal 선택글인덱스={선택글인덱스} 글제목={글제목}/> : null
+        modal? <Modal 선택글인덱스={선택글인덱스} 글제목={글제목} 날짜={날짜} 상세내용={상세내용}/> : null
       }
-      <> </>
 
       <input placeholder='글 제목' onChange={(e)=>{
-        입력값변경(e.target.value);
-        }}/><input type='date' onChange={(e)=>{
+        입력글제목변경(e.target.value);
+        }}/>
+        <input type='date' onChange={(e)=>{
           입력날짜변경(e.target.value);
-        }}/><input placeholder='상세내용'></input> <button onClick={()=>{
+        }}/>
+        <input placeholder='상세내용' onChange={(e)=>{
+          입력상세내용변경(e.target.value);
+        }}/>
+        <button onClick={()=>{
           // TODO : 입력값 없으면 발행 안하기
-          날짜변경([...날짜, 입력날짜])
-          글제목변경([...글제목, 입력값]);
+          글제목변경([...글제목, 입력글제목]);
+          날짜변경([...날짜, 입력날짜]);
+          상세내용변경([...상세내용, 입력상세내용]);
           따봉변경([...따봉, 0]);
           }}>글 발행</button>
 
@@ -79,8 +86,8 @@ function Modal(props){
   return(
     <div className="modal">
       <h4>{props.글제목[props.선택글인덱스]}</h4>
-      <p>날짜</p>
-      <p>상세내용</p>
+      <p>{props.날짜[props.선택글인덱스]}</p>
+      <p>{props.상세내용[props.선택글인덱스]}</p>
       <button>글 수정</button>
     </div>
   )
